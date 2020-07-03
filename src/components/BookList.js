@@ -3,11 +3,14 @@ import { useState } from 'react';
 //import './containers.json';
 import axios from 'axios';
 
-export default function TableOfContent() {
+export default function BookList() {
   const [TocItems, setTocItems] = useState([]);
 
   axios
-    .get('containers.json')
+    .get(
+      'containers.json'
+      //'https://www.schullv.de/api/v2/categories/MSHSBWAI7Q7596198M/light_containers'
+    )
     .then((response) => {
       return response.data;
     })

@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
-import TableOfContent from '../components/TableOfContent';
+import BookList from '../components/BookList';
 
 export default function StartScreen() {
   return (
@@ -9,7 +9,7 @@ export default function StartScreen() {
       //content={<img src="/img/schullv_logo.png" alt="SchulLV Logo" />}
       />
 
-      <TableOfContent />
+      <BookList />
     </>
   );
 }

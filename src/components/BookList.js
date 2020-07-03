@@ -44,6 +44,8 @@ const StyledBookList = styled.ul`
   margin: 0 auto;
   padding: 0;
   text-align: center;
+  overflow: scroll;
+  height: 300px;
 
   > li {
     text-align: left;
@@ -51,7 +53,7 @@ const StyledBookList = styled.ul`
     display: inline-block;
     background-color: #82a9de;
     padding: 13px;
-    width: 80%;
+    width: 70%;
     margin: 1px auto;
   }
 `;

@@ -17,9 +17,11 @@ export default createGlobalStyle`
     }
     
     body {
+
         width: 100vw;
         height: 100vh;
         margin: 0;
-        font-family: 'Roboto', sans-serif
+        font-family: 'Roboto', sans-serif;
+        color: #434343;
       }
 `;

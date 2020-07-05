@@ -23,12 +23,6 @@ export default function BookList() {
       });
   }, []);
 
-  // fetch('./containers.json')
-  //   .then((response) => response.json())
-  //   .then((responseJson) => {
-  //     console.log(responseJson);
-  //   })
-  //   .catch((error) => console.log(error));
   return (
     <StyledBookList>
       {TocItems.length > 0 && TocItems.map((item) => renderItem(item))}

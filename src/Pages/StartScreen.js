@@ -1,8 +1,6 @@
 import React from 'react';
-import Header from '../components/Header';
-import BookList from '../components/BookList';
-import Dropdown from '../components/Dropdown';
 import styled from 'styled-components';
+import BookMenu from '../components/BookMenu';
 
 export default function StartScreen() {
   return (
@@ -10,10 +8,7 @@ export default function StartScreen() {
       <header>
         <img src="/img/schullv_logo.png" />
       </header>
-      <div>
-        <Dropdown />
-        <BookList />
-      </div>
+      <BookMenu />
     </Grid>
   );
 }

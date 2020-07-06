@@ -1,37 +1,32 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import styled from 'styled-components';
+import React from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+import styled from 'styled-components'
 
 export default function BookList() {
-  const [TocItems, setTocItems] = useState([]);
+  const [TocItems, setTocItems] = useState([])
 
   useEffect(() => {
-    axios
-      .get(
-        'containers.json'
-        //'https://www.schullv.de/api/v2/categories/MSHSBWAI7Q7596198M/light_containers'
-      )
-      .then((response) => {
-        return response.data;
+    axios('./containers.json')
+      .then((response) => response.data)
+      .then((responseJson) => {
+        setTocItems(responseJson)
+        console.log(responseJson)
       })
-      .then((list) => {
-        setTocItems(list);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  }, []);
+      .catch((error) => console.log(error))
+  }, [])
 
   return (
     <StyledBookList>
-      {TocItems.length > 0 && TocItems.map((item) => renderItem(item))}
+      {TocItems &&
+        TocItems.length > 0 &&
+        TocItems.map((item) => renderItem(item))}
     </StyledBookList>
-  );
+  )
 }
 
 function renderItem(item) {
-  return <li key={item.containerId}>{item.topic}</li>;
+  return <li key={item.containerId}>{item.topic}</li>
 }
 
 const StyledBookList = styled.ul`
@@ -50,4 +45,4 @@ const StyledBookList = styled.ul`
     width: 70%;
     margin: 1px auto;
   }
-`;
+`

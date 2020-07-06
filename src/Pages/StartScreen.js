@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import BookMenu from '../components/BookMenu';
+import React from 'react'
+import styled from 'styled-components'
+import BookMenu from '../components/BookMenu'
 
 export default function StartScreen() {
   return (
@@ -10,7 +10,7 @@ export default function StartScreen() {
       </header>
       <BookMenu />
     </Grid>
-  );
+  )
 }
 
 const Grid = styled.div`
@@ -26,7 +26,6 @@ const Grid = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    align-self: center;
     width: 100vw;
 
     > img {
@@ -37,4 +36,4 @@ const Grid = styled.div`
   > div {
     align-self: start;
   }
-`;
+`

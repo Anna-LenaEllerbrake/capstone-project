@@ -11,7 +11,6 @@ export default function BookList() {
       .then((response) => response.data)
       .then((responseJson) => {
         setTocItems(responseJson)
-        console.log(responseJson)
       })
       .catch((error) => console.log(error))
   }, [])

@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
-import Roboto from './fonts/Roboto-Regular.ttf';
+import { createGlobalStyle } from 'styled-components'
+import Roboto from './fonts/Roboto-Regular.ttf'
 
 export default createGlobalStyle`
 
@@ -23,5 +23,6 @@ export default createGlobalStyle`
         margin: 0;
         font-family: 'Roboto', sans-serif;
         color: #434343;
+        font-weight: normal;
       }
-`;
+`

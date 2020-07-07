@@ -3,6 +3,8 @@ import Dropdown from './Dropdown'
 import BookList from './BookList'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import TableOfContent from './TableOfContent'
+import { productionSource, developmentSource } from '../constants'
 
 export default function BookMenu({ active }) {
   const [isActive, setIsActive] = useState(active)
@@ -10,9 +12,7 @@ export default function BookMenu({ active }) {
   const [currentBook, setCurrentBook] = useState()
 
   useEffect(() => {
-    axios(
-      'https://www.schullv.de/api/v2/categories/MSHSBWAI7Q7596198M/light_containers'
-    )
+    axios(developmentSource)
       .then((response) => response.data)
       .then((responseJson) => {
         setBooks(responseJson)
@@ -25,10 +25,15 @@ export default function BookMenu({ active }) {
       <Dropdown
         isActive={isActive}
         onClick={changeIsActive}
-        text={currentBook ? currentBook : 'Wähle eine Lektürehilfe'}
+        text={currentBook ? currentBook.topic : 'Wähle eine Lektürehilfe'}
       />
       {isActive ? (
         <BookList books={books} clickFunction={handleClick} />
+      ) : (
+        <></>
+      )}
+      {!isActive && currentBook ? (
+        <TableOfContent bookChapters={currentBook.children} />
       ) : (
         <></>
       )}
@@ -38,7 +43,9 @@ export default function BookMenu({ active }) {
   function handleClick(event) {
     changeIsActive()
     console.log(event.target)
-    setCurrentBook(event.target.textContent)
+    setCurrentBook(
+      books.find((item) => item.topic === event.target.textContent)
+    )
     console.log(event.target.textContent)
   }
 

@@ -7,7 +7,9 @@ export default function BookList() {
   const [TocItems, setTocItems] = useState([])
 
   useEffect(() => {
-    axios('./containers.json')
+    axios(
+      'https://www.schullv.de/api/v2/categories/MSHSBWAI7Q7596198M/light_containers'
+    )
       .then((response) => response.data)
       .then((responseJson) => {
         setTocItems(responseJson)

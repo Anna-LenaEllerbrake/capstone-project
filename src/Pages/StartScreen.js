@@ -6,9 +6,12 @@ export default function StartScreen() {
   return (
     <Grid>
       <header>
-        <img src="/img/schullv_logo.png" />
+        <img
+          src="/img/schullv_logo.png"
+          alt="Logo SchulLV - smarter learning"
+        />
       </header>
-      <BookMenu />
+      <BookMenu active={false} />
     </Grid>
   )
 }

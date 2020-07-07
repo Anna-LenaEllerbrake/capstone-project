@@ -3,10 +3,10 @@ import styled from 'styled-components'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import NavigateNextIcon from '@material-ui/icons/NavigateNext'
 
-export default function Dropdown({ isActive, onClick }) {
+export default function Dropdown({ isActive, onClick, text }) {
   return (
     <StyledDropdown onClick={onClick}>
-      Wähle eine Lektürehilfe {getArrow(isActive)}
+      {text} {getArrow(isActive)}
     </StyledDropdown>
   )
 }

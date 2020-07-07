@@ -1,33 +1,22 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
-import axios from 'axios'
+
 import styled from 'styled-components'
 
-export default function BookList() {
-  const [TocItems, setTocItems] = useState([])
-
-  useEffect(() => {
-    axios(
-      'https://www.schullv.de/api/v2/categories/MSHSBWAI7Q7596198M/light_containers'
-    )
-      .then((response) => response.data)
-      .then((responseJson) => {
-        setTocItems(responseJson)
-      })
-      .catch((error) => console.log(error))
-  }, [])
-
+export default function BookList({ books, clickFunction }) {
   return (
     <StyledBookList>
-      {TocItems &&
-        TocItems.length > 0 &&
-        TocItems.map((item) => renderItem(item))}
+      {books &&
+        books.length > 0 &&
+        books.map((book, index) => renderItem(book, index))}
     </StyledBookList>
   )
-}
-
-function renderItem(item) {
-  return <li key={item.containerId}>{item.topic}</li>
+  function renderItem(item, index) {
+    return (
+      <li key={index} onClick={clickFunction}>
+        {item.topic}
+      </li>
+    )
+  }
 }
 
 const StyledBookList = styled.ul`

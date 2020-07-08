@@ -6,15 +6,15 @@ export default function TableOfContent({ bookChapters }) {
     <StyledList>
       {bookChapters &&
         bookChapters.length > 0 &&
-        bookChapters.map((chapter, index) => renderItem(chapter, index))}
+        bookChapters.map((chapter) => renderItem(chapter))}
     </StyledList>
   )
 
-  function renderItem(item, index) {
+  function renderItem(item) {
     if (item.children && item.children.length > 0) {
       return (
         <>
-          <li key={index}>{item.topic} </li>
+          <li key={item.containerId}>{item.topic} </li>
           <ul>
             {item.children &&
               item.children.length > 0 &&
@@ -25,7 +25,7 @@ export default function TableOfContent({ bookChapters }) {
         </>
       )
     } else {
-      return <li key={index}>{item.topic}</li>
+      return <li key={item.containerId}>{item.topic}</li>
     }
   }
 }

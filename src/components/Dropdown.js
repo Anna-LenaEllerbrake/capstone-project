@@ -30,6 +30,9 @@ const StyledDropdown = styled.div`
   padding: 13px 25px;
   margin: 30px auto 0 auto;
   align-self: start;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `
 
 // function getArrow(isActive) {

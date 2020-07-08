@@ -13,19 +13,21 @@ export default function TableOfContent({ bookChapters }) {
   function renderItem(item) {
     if (item.children && item.children.length > 0) {
       return (
-        <>
-          <li key={item.containerId}>{item.topic} </li>
+        <li key={item.containerId}>
+          <span> {item.topic}</span>
           <ul>
             {item.children &&
               item.children.length > 0 &&
-              item.children.map((chapter, chapterIndex) =>
-                renderItem(chapter, chapterIndex)
-              )}
+              item.children.map((chapter) => renderItem(chapter))}
           </ul>
-        </>
+        </li>
       )
     } else {
-      return <li key={item.containerId}>{item.topic}</li>
+      return (
+        <li key={item.containerId}>
+          <span> {item.topic}</span>
+        </li>
+      )
     }
   }
 }
@@ -36,9 +38,13 @@ export const StyledTableOfContent = styled.ul`
   text-align: center;
   overflow: scroll;
   height: 55vh;
-  width: 80%;
-  
+  width: 80vw;
+
   li {
+    list-style: none;
+  }
+
+  span {
     text-align: left;
     list-style: none;
     display: block;
@@ -49,34 +55,33 @@ export const StyledTableOfContent = styled.ul`
   }
 
   > li {
-    
-    background-color: #82a9de;
-    padding: 13px;
-  }
-
-  > ul {
-    margin: 0 auto;
-    padding: 0;
-    text-align: center;
-
-    > li {
-      
-      background-color: #B1C9EA;
-      padding: 13px 13px 13px 35px;
-      
+    > span {
+      background-color: #82a9de;
+      padding: 13px;
     }
 
     > ul {
       margin: 0 auto;
       padding: 0;
       text-align: center;
-  
+
       > li {
-        
-        background-color: #E1EAF7;
-        padding: 13px 13px 13px 57px;
-      
-        
+        > span {
+          background-color: #b1c9ea;
+          padding: 13px 13px 13px 35px;
+        }
+
+        > ul {
+          margin: 0 auto;
+          padding: 0;
+          text-align: center;
+
+          > li > span {
+            background-color: #e1eaf7;
+            padding: 13px 13px 13px 57px;
+          }
+        }
       }
+    }
   }
 `

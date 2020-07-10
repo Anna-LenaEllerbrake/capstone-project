@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-import Roboto from './fonts/Roboto-Regular.ttf'
+import Roboto from '../fonts/Roboto-Regular.ttf'
 
 export default createGlobalStyle`
 :root {

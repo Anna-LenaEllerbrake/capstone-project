@@ -22,10 +22,9 @@ const StyledBookList = styled.ul`
   padding: 0 0 10px 0;
   text-align: center;
   overflow: scroll;
-  height: 45vh; //55
+  height: 45vh;
   width: 78%;
-  //box-shadow: 0 2px 15px #e2e2e2;
-  background: #b1c9ea;
+  background: var(--tertiaryBlue);
 
   > li {
     text-align: left;

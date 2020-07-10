@@ -42,11 +42,9 @@ export default function BookMenu({ active }) {
 
   function handleClick(event) {
     changeIsActive()
-    console.log(event.target)
     setCurrentBook(
       books.find((item) => item.topic === event.target.textContent)
     )
-    console.log(event.target.textContent)
   }
 
   function changeIsActive() {

@@ -24,7 +24,7 @@ const StyledDropdown = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: #82a9de;
+  background-color: var(--secondaryBlue);
   border-radius: 25px;
   width: 90%;
   padding: 13px 25px;

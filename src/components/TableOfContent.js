@@ -56,7 +56,7 @@ export const StyledTableOfContent = styled.ul`
 
   > li {
     > span {
-      background-color: #82a9de;
+      background-color: var(--secondaryBlue);
       padding: 13px;
     }
 
@@ -67,7 +67,7 @@ export const StyledTableOfContent = styled.ul`
 
       > li {
         > span {
-          background-color: #b1c9ea;
+          background-color: var(--tertiaryBlue);
           padding: 13px 13px 13px 35px;
         }
 
@@ -77,7 +77,7 @@ export const StyledTableOfContent = styled.ul`
           text-align: center;
 
           > li > span {
-            background-color: #e1eaf7;
+            background-color: var(--quaternaryBlue);
             padding: 13px 13px 13px 57px;
           }
         }

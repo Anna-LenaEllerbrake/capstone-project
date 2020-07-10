@@ -8,7 +8,16 @@ export default createGlobalStyle`
   src: url(${Roboto}) format('truetype');
   font-weight: 300;
   font-style: normal;
- 
+
+ :root {
+  --primaryBlue: #2D6EC8; 
+  --secondaryBlue: #82a9de;
+  --tertiaryBlue: #b1c9ea;
+  --quaternaryBlue: #e1eaf7;
+  --textGrey: #434343;
+}
+
+
 
  * {
 
@@ -22,7 +31,7 @@ export default createGlobalStyle`
         height: 100vh;
         margin: 0;
         font-family: 'Roboto', sans-serif;
-        color: #434343;
+        color: var(--textGrey);
         font-weight: normal;
       }
 `

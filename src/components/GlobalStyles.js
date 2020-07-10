@@ -15,6 +15,7 @@ export default createGlobalStyle`
   src: url(${Roboto}) format('truetype');
   font-weight: 300;
   font-style: normal;
+}
 
  * {
 
@@ -22,8 +23,7 @@ export default createGlobalStyle`
     
     }
     
-    body {
-
+body {
         width: 100vw;
         height: 100vh;
         margin: 0;

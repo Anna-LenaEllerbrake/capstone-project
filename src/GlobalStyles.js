@@ -2,14 +2,7 @@ import { createGlobalStyle } from 'styled-components'
 import Roboto from './fonts/Roboto-Regular.ttf'
 
 export default createGlobalStyle`
-
-@font-face {
-  font-family: 'Roboto';
-  src: url(${Roboto}) format('truetype');
-  font-weight: 300;
-  font-style: normal;
-
- :root {
+:root {
   --primaryBlue: #2D6EC8; 
   --secondaryBlue: #82a9de;
   --tertiaryBlue: #b1c9ea;
@@ -17,7 +10,11 @@ export default createGlobalStyle`
   --textGrey: #434343;
 }
 
-
+@font-face {
+  font-family: 'Roboto';
+  src: url(${Roboto}) format('truetype');
+  font-weight: 300;
+  font-style: normal;
 
  * {
 

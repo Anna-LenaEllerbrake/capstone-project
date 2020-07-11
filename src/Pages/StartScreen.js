@@ -12,7 +12,7 @@ export default function StartScreen() {
           alt="Logo SchulLV - smarter learning"
         />
       </header>
-      <BookMenu apiUrl={productionSource} />
+      <BookMenu apiUrl={developmentSource} />
     </Grid>
   )
 }

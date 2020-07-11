@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import BookMenu from '../components/BookMenu'
+import { productionSource, developmentSource } from '../constants'
 
 export default function StartScreen() {
   return (
@@ -11,7 +12,7 @@ export default function StartScreen() {
           alt="Logo SchulLV - smarter learning"
         />
       </header>
-      <BookMenu active={false} />
+      <BookMenu apiUrl={developmentSource} />
     </Grid>
   )
 }

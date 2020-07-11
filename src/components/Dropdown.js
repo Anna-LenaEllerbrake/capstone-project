@@ -3,16 +3,23 @@ import styled from 'styled-components'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import NavigateNextIcon from '@material-ui/icons/NavigateNext'
 
-export default function Dropdown({ isActive, onClick, text }) {
+export default function Dropdown({
+  isActive,
+  onClick,
+  selectText,
+  selectedText,
+}) {
   return (
     <StyledDropdown onClick={onClick}>
       {isActive ? (
         <>
-          Wähle eine Lektürehilfe <ExpandMoreIcon size={24} />
+          {selectText}
+          <ExpandMoreIcon size={24} />
         </>
       ) : (
         <>
-          {text} <NavigateNextIcon size={24} />
+          {selectedText || selectText}
+          <NavigateNextIcon size={24} />
         </>
       )}
     </StyledDropdown>

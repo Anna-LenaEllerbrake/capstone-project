@@ -1,42 +1,24 @@
 import React from 'react'
-
 import styled from 'styled-components'
+import BookListItem from './BookListItem'
 
-export default function BookList({ books, clickFunction }) {
+export default function BookList({ books, onClick }) {
   return (
     <StyledBookList>
-      {books && books.length > 0 && books.map((book) => renderItem(book))}
+      {books &&
+        books.length > 0 &&
+        books.map((book) => (
+          <BookListItem key={book.containerId} book={book} onClick={onClick} />
+        ))}
     </StyledBookList>
   )
-  function renderItem(item) {
-    return (
-      <li key={item.containerId} onClick={clickFunction}>
-        {item.topic}
-      </li>
-    )
-  }
 }
 
 const StyledBookList = styled.ul`
   margin: 0 auto;
-  padding: 0 0 10px 0;
-  text-align: center;
+  padding: 0;
   overflow: scroll;
-  height: 45vh;
-  width: 78%;
+  height: 55vh;
+  width: 76vw;
   background: var(--tertiaryBlue);
-
-  > li {
-    text-align: left;
-    list-style: none;
-    display: block;
-    width: 100%;
-    margin: 0 auto;
-
-    border-bottom: 2px solid white;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    padding: 13px;
-  }
 `

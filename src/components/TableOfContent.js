@@ -37,8 +37,8 @@ export const StyledTableOfContent = styled.ul`
   padding: 0;
   text-align: center;
   overflow: scroll;
-  height: 55vh;
-  width: 80vw;
+  height: 65vh;
+  width: 78vw;
 
   li {
     list-style: none;

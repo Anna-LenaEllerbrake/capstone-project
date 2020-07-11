@@ -4,15 +4,14 @@ import BookList from './BookList'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import TableOfContent from './TableOfContent'
-import { productionSource, developmentSource } from '../constants'
 
-export default function BookMenu({ active }) {
-  const [isActive, setIsActive] = useState(active)
+export default function BookMenu({ apiUrl }) {
+  const [isActive, setIsActive] = useState(false)
   const [books, setBooks] = useState([])
   const [currentBook, setCurrentBook] = useState()
 
   useEffect(() => {
-    axios(developmentSource)
+    axios(apiUrl)
       .then((response) => response.data)
       .then((responseJson) => {
         setBooks(responseJson)
@@ -25,14 +24,12 @@ export default function BookMenu({ active }) {
       <Dropdown
         isActive={isActive}
         onClick={changeIsActive}
-        text={currentBook ? currentBook.topic : 'Wähle eine Lektürehilfe'}
+        selectText={'Wähle eine Lektürehilfe'}
+        selectedText={currentBook && currentBook.topic}
       />
       {isActive ? (
-        <BookList books={books} clickFunction={handleClick} />
-      ) : (
-        <></>
-      )}
-      {!isActive && currentBook ? (
+        <BookList books={books} onClick={handleClick} />
+      ) : currentBook ? (
         <TableOfContent bookChapters={currentBook.children} />
       ) : (
         <></>

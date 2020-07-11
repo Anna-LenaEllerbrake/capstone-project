@@ -10,7 +10,7 @@ export default function Dropdown({
   selectedText,
 }) {
   return (
-    <StyledDropdown onClick={onClick}>
+    <StyledDropdown data-testid="dropdown-button" onClick={onClick}>
       {isActive ? (
         <>
           {selectText}

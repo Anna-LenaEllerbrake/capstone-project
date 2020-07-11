@@ -2,7 +2,7 @@ import React from 'react'
 import BookListItem from './BookListItem'
 
 import { render, fireEvent } from '@testing-library/react'
-import '@testing-library/jest-dom/extend-expect'
+
 import bookList from '../../public/containers.json'
 
 it('triggers an event on click', async () => {
@@ -17,7 +17,7 @@ it('triggers an event on click', async () => {
   )
 
   /** Get the Button by the testid */
-  const button = getByTestId('navigation-button')
+  const button = getByTestId('book-button')
 
   /** Trigger the click event of the button */
   fireEvent.click(button)

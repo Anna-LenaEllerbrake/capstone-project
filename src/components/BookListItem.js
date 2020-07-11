@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 export default function BookListItem({ book, onClick }) {
   return (
-    <StyledBookListItem data-testid="navigation-button" onClick={onClick}>
+    <StyledBookListItem data-testid="book-button" onClick={onClick}>
       {book.topic}
     </StyledBookListItem>
   )

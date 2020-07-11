@@ -1,18 +1,50 @@
-import React from 'react';
-import Dropdown from './Dropdown';
-import BookList from './BookList';
-import { useState } from 'react';
+import React from 'react'
+import Dropdown from './Dropdown'
+import BookList from './BookList'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+import TableOfContent from './TableOfContent'
 
-export default function BookMenu() {
-  const [isActive, setIsActive] = useState(false);
+export default function BookMenu({ apiUrl }) {
+  const [isActive, setIsActive] = useState(false)
+  const [books, setBooks] = useState([])
+  const [currentBook, setCurrentBook] = useState()
+
+  useEffect(() => {
+    axios(apiUrl)
+      .then((response) => response.data)
+      .then((responseJson) => {
+        setBooks(responseJson)
+      })
+      .catch((error) => console.log(error))
+  }, [])
+
   return (
     <div>
-      <Dropdown isActive={isActive} onClick={changeIsActive} />
-      {isActive ? <BookList /> : <></>}
+      <Dropdown
+        isActive={isActive}
+        onClick={changeIsActive}
+        selectText={'Wähle eine Lektürehilfe'}
+        selectedText={currentBook && currentBook.topic}
+      />
+      {isActive ? (
+        <BookList books={books} onClick={handleClick} />
+      ) : currentBook ? (
+        <TableOfContent bookChapters={currentBook.children} />
+      ) : (
+        <></>
+      )}
     </div>
-  );
+  )
+
+  function handleClick(event) {
+    changeIsActive()
+    setCurrentBook(
+      books.find((item) => item.topic === event.target.textContent)
+    )
+  }
 
   function changeIsActive() {
-    setIsActive(!isActive);
+    setIsActive(!isActive)
   }
 }

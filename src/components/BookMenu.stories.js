@@ -21,12 +21,12 @@ export default {
 }
 
 export const bookMenuData = {
-  isActive: true,
+  isActive: false,
   updatedAt: new Date(2020, 6, 5, 19, 0),
 }
 
 export const actionsData = {}
 
-export const Inactive = () => <BookMenu />
+export const Inactive = () => <BookMenu active={false} />
 
-export const Active = () => <BookMenu />
+export const Active = () => <BookMenu active={true} />

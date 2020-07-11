@@ -3,10 +3,25 @@ import styled from 'styled-components'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import NavigateNextIcon from '@material-ui/icons/NavigateNext'
 
-export default function Dropdown({ isActive, onClick }) {
+export default function Dropdown({
+  isActive,
+  onClick,
+  selectText,
+  selectedText,
+}) {
   return (
-    <StyledDropdown onClick={onClick}>
-      Wähle eine Lektürehilfe {getArrow(isActive)}
+    <StyledDropdown data-testid="dropdown-button" onClick={onClick}>
+      {isActive ? (
+        <>
+          {selectText}
+          <ExpandMoreIcon size={24} />
+        </>
+      ) : (
+        <>
+          {selectedText || selectText}
+          <NavigateNextIcon size={24} />
+        </>
+      )}
     </StyledDropdown>
   )
 }
@@ -16,18 +31,13 @@ const StyledDropdown = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: #2d6ec8;
+  background-color: var(--secondaryBlue);
   border-radius: 25px;
-  width: 80%;
+  width: 90%;
   padding: 13px 25px;
   margin: 30px auto 0 auto;
   align-self: start;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `
-
-function getArrow(isActive) {
-  return isActive ? (
-    <ExpandMoreIcon size={24} />
-  ) : (
-    <NavigateNextIcon size={24} />
-  )
-}

@@ -41,8 +41,3 @@ const StyledDropdown = styled.div`
   text-overflow: ellipsis;
   white-space: nowrap;
 `
-
-// function getArrow(isActive) {
-//   return
-//   )
-// }

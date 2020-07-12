@@ -20,5 +20,5 @@ const StyledBookList = styled.ul`
   overflow: scroll;
   height: 55vh;
   width: 76vw;
-  background: var(--tertiaryBlue);
+  max-width: 400px;
 `

@@ -1,7 +1,7 @@
 import React from 'react'
 import { action } from '@storybook/addon-actions'
 import BookList from './BookList'
-import GlobalStyles from '../GlobalStyles'
+import GlobalStyles from './GlobalStyles'
 import { addDecorator } from '@storybook/react'
 addDecorator((s) => (
   <>

@@ -39,6 +39,7 @@ export const StyledTableOfContent = styled.ul`
   overflow: scroll;
   height: 65vh;
   width: 78vw;
+  max-width: 400px;
 
   li {
     list-style: none;

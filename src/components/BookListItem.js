@@ -19,4 +19,5 @@ const StyledBookListItem = styled.li`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  background: var(--tertiaryBlue);
 `

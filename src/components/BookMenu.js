@@ -5,8 +5,8 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import TableOfContent from './TableOfContent'
 
-export default function BookMenu({ apiUrl }) {
-  const [isActive, setIsActive] = useState(false)
+export default function BookMenu({ apiUrl, active }) {
+  const [isActive, setIsActive] = useState(active)
   const [books, setBooks] = useState([])
   const [currentBook, setCurrentBook] = useState()
 

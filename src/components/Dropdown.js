@@ -34,6 +34,7 @@ const StyledDropdown = styled.div`
   background-color: var(--secondaryBlue);
   border-radius: 25px;
   width: 90%;
+  max-width: 450px;
   padding: 13px 25px;
   margin: 30px auto 0 auto;
   align-self: start;

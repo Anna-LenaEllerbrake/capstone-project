@@ -2,10 +2,12 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
+import { useParams } from 'react-router-dom'
 
-export default function ContentScreen({ chapter }) {
+export default function ContentScreen() {
+  const props = useParams()
   const [content, setContent] = useState({})
-  const apiSource = `https://www.schullv.de/api/v2/containers/${chapter.containerId}/labels/LKlektuerenhilfen0/contents`
+  const apiSource = `https://www.schullv.de/api/v2/containers/${props.containerId}/labels/LKlektuerenhilfen0/contents`
 
   useEffect(() => {
     axios(apiSource)
@@ -19,7 +21,7 @@ export default function ContentScreen({ chapter }) {
   return (
     <Grid>
       <header>
-        <h1>{chapter.topic}</h1>
+        <h1>{props.topic}</h1>
       </header>
       <section dangerouslySetInnerHTML={{ __html: content.html }} />
     </Grid>
@@ -41,6 +43,13 @@ const Grid = styled.div`
     align-items: center;
     color: var(--primaryBlue);
     font-size: 0.8rem;
+
+    > h1 {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   }
 
   > div {

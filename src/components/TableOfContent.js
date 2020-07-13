@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link, NavLink } from 'react-router-dom'
 
 export default function TableOfContent({ bookChapters }) {
   return (
@@ -25,7 +26,9 @@ export default function TableOfContent({ bookChapters }) {
     } else {
       return (
         <li key={item.containerId}>
-          <span> {item.topic}</span>
+          <NavLink to={`lektueren/kapitel/${item.topic}/${item.containerId}`}>
+            {item.topic}
+          </NavLink>
         </li>
       )
     }
@@ -37,15 +40,17 @@ export const StyledTableOfContent = styled.ul`
   padding: 0;
   text-align: center;
   overflow: scroll;
-  height: 65vh;
+  height: 55vh;
   width: 78vw;
-  max-width: 400px;
 
   li {
     list-style: none;
   }
 
-  span {
+  span,
+  a {
+    text-decoration: none;
+    color: var(--textGrey);
     text-align: left;
     list-style: none;
     display: block;
@@ -56,7 +61,8 @@ export const StyledTableOfContent = styled.ul`
   }
 
   > li {
-    > span {
+    > span,
+    a {
       background-color: var(--secondaryBlue);
       padding: 13px;
     }
@@ -67,7 +73,8 @@ export const StyledTableOfContent = styled.ul`
       text-align: center;
 
       > li {
-        > span {
+        > span,
+        a {
           background-color: var(--tertiaryBlue);
           padding: 13px 13px 13px 35px;
         }
@@ -77,7 +84,8 @@ export const StyledTableOfContent = styled.ul`
           padding: 0;
           text-align: center;
 
-          > li > span {
+          > li > span,
+          a {
             background-color: var(--quaternaryBlue);
             padding: 13px 13px 13px 57px;
           }

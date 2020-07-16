@@ -1,13 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { getUrl } from '../util'
 
-export default function TableOfContent({ bookChapters }) {
+export default function TableOfContent({ book }) {
   return (
     <StyledTableOfContent>
-      {bookChapters &&
-        bookChapters.length > 0 &&
-        bookChapters.map((chapter) => renderItem(chapter))}
+      {book.children &&
+        book.children.length > 0 &&
+        book.children.map((chapter) => renderItem(chapter))}
     </StyledTableOfContent>
   )
 
@@ -26,9 +27,13 @@ export default function TableOfContent({ bookChapters }) {
     } else {
       return (
         <li key={item.containerId}>
-          <NavLink to={`lektueren/kapitel/${item.topic}/${item.containerId}`}>
+          <Link
+            to={`${getUrl(book.topic)}/${getUrl(item.topic)}/${
+              item.containerId
+            }`}
+          >
             {item.topic}
-          </NavLink>
+          </Link>
         </li>
       )
     }
@@ -42,6 +47,7 @@ export const StyledTableOfContent = styled.ul`
   overflow: scroll;
   height: 55vh;
   width: 78vw;
+  max-width: 400px;
 
   li {
     list-style: none;

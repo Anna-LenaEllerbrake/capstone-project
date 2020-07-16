@@ -4,10 +4,15 @@ import axios from 'axios'
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { getTitleFromUrl } from '../util'
 
 export default function ContentScreen() {
   const props = useParams()
+  //const containerTopicUrl = props.chapterTopic
+  const containerTopic = getTitleFromUrl(props.chapterTopic)
+  const bookTitleUrl = props.bookTitle
+  //const bookTitle = getTitleForUrl(props.bookTitle)
   const [content, setContent] = useState({})
   const apiSource = `https://www.schullv.de/api/v2/containers/${props.containerId}/labels/LKlektuerenhilfen0/contents`
 
@@ -23,10 +28,10 @@ export default function ContentScreen() {
   return (
     <Grid>
       <header>
-        <NavLink to="/">
+        <Link to={`/${bookTitleUrl}`}>
           <NavigateBeforeIcon size={48} />
-        </NavLink>
-        <h1>{props.topic}</h1>
+        </Link>
+        <h1>{containerTopic}</h1>
       </header>
       <section dangerouslySetInnerHTML={{ __html: content.html }} />
     </Grid>
@@ -52,7 +57,7 @@ const Grid = styled.div`
 
     > a {
       position: absolute;
-      left: 15px;
+      left: 25px;
       top: 29px;
       justify-self: start;
 
@@ -62,9 +67,7 @@ const Grid = styled.div`
     }
 
     > h1 {
-      margin: 0;
-      margin-left: 50px;
-      margin-right: 50px;
+      margin: 0 55px;
       font-size: 1.5rem;
       justify-content: center;
       align-self: start;
@@ -74,7 +77,7 @@ const Grid = styled.div`
     }
   }
 
-  > div {
-    align-self: start;
+  > section {
+    padding: 0 10px 10px;
   }
 `

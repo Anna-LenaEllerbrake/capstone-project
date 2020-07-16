@@ -4,14 +4,14 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import NavigateNextIcon from '@material-ui/icons/NavigateNext'
 
 export default function Dropdown({
-  isActive,
+  status,
   onClick,
   selectText,
   selectedText,
 }) {
   return (
     <StyledDropdown data-testid="dropdown-button" onClick={onClick}>
-      {isActive ? (
+      {status === 'ACTIVE' ? (
         <>
           {selectText}
           <ExpandMoreIcon size={24} />

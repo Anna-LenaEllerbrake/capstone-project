@@ -4,7 +4,7 @@ import React from 'react'
 import { action } from '@storybook/addon-actions'
 
 import Dropdown from './Dropdown'
-import GlobalStyles from '../GlobalStyles'
+import GlobalStyles from './GlobalStyles'
 import { addDecorator } from '@storybook/react'
 addDecorator((s) => (
   <>
@@ -21,6 +21,8 @@ export default {
 }
 
 export const dropdownData = {
+  selectText: 'Wähle eine Lektürehilfe',
+  selectedText: 'Agnes',
   isActive: false,
   text: 'Corpus Delicti',
 }
@@ -31,4 +33,6 @@ export const actionsData = {
 
 export const Inactive = () => <Dropdown {...dropdownData} {...actionsData} />
 
-export const Active = () => <Dropdown isActive={true} {...actionsData} />
+export const Active = () => (
+  <Dropdown {...dropdownData} isActive={true} {...actionsData} />
+)

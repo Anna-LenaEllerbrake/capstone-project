@@ -4,8 +4,10 @@ import React from 'react'
 import { action } from '@storybook/addon-actions'
 
 import BookMenu from './BookMenu'
-import GlobalStyles from '../GlobalStyles'
+import GlobalStyles from './GlobalStyles'
 import { addDecorator } from '@storybook/react'
+import { developmentSource } from '../constants'
+
 addDecorator((s) => (
   <>
     <GlobalStyles />
@@ -29,4 +31,6 @@ export const actionsData = {}
 
 export const Inactive = () => <BookMenu active={false} />
 
-export const Active = () => <BookMenu active={true} />
+export const Active = () => (
+  <BookMenu apiUrl={developmentSource} active={true} />
+)

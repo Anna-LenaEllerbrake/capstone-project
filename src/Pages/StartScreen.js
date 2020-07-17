@@ -1,9 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 import BookMenu from '../components/BookMenu'
-import { productionSource, developmentSource } from '../constants'
+import { useParams } from 'react-router-dom'
+import { getTitleFromUrl } from '../util'
 
-export default function StartScreen() {
+export default function StartScreen({ books, apiUrl }) {
+  const props = useParams()
+
+  const currentBookTitle =
+    props.bookTitleForUrl && getTitleFromUrl(props.bookTitleForUrl)
+
   return (
     <Grid>
       <header>
@@ -12,7 +18,11 @@ export default function StartScreen() {
           alt="Logo SchulLV - smarter learning"
         />
       </header>
-      <BookMenu apiUrl={developmentSource} />
+      <BookMenu
+        currentBookTitle={currentBookTitle}
+        apiUrl={apiUrl}
+        books={books}
+      />
     </Grid>
   )
 }

@@ -1,12 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+import { getUrl } from '../util'
 
-export default function TableOfContent({ bookChapters }) {
+export default function TableOfContent({ book }) {
   return (
     <StyledTableOfContent>
-      {bookChapters &&
-        bookChapters.length > 0 &&
-        bookChapters.map((chapter) => renderItem(chapter))}
+      {book.children &&
+        book.children.length > 0 &&
+        book.children.map((chapter) => renderItem(chapter))}
     </StyledTableOfContent>
   )
 
@@ -25,7 +27,13 @@ export default function TableOfContent({ bookChapters }) {
     } else {
       return (
         <li key={item.containerId}>
-          <span> {item.topic}</span>
+          <Link
+            to={`${getUrl(book.topic)}/${getUrl(item.topic)}/${
+              item.containerId
+            }`}
+          >
+            {item.topic}
+          </Link>
         </li>
       )
     }
@@ -37,14 +45,18 @@ export const StyledTableOfContent = styled.ul`
   padding: 0;
   text-align: center;
   overflow: scroll;
-  height: 65vh;
+  height: 55vh;
   width: 78vw;
+  max-width: 400px;
 
   li {
     list-style: none;
   }
 
-  span {
+  span,
+  a {
+    text-decoration: none;
+    color: var(--textGrey);
     text-align: left;
     list-style: none;
     display: block;
@@ -55,7 +67,8 @@ export const StyledTableOfContent = styled.ul`
   }
 
   > li {
-    > span {
+    > span,
+    a {
       background-color: var(--secondaryBlue);
       padding: 13px;
     }
@@ -66,7 +79,8 @@ export const StyledTableOfContent = styled.ul`
       text-align: center;
 
       > li {
-        > span {
+        > span,
+        a {
           background-color: var(--tertiaryBlue);
           padding: 13px 13px 13px 35px;
         }
@@ -76,7 +90,8 @@ export const StyledTableOfContent = styled.ul`
           padding: 0;
           text-align: center;
 
-          > li > span {
+          > li > span,
+          a {
             background-color: var(--quaternaryBlue);
             padding: 13px 13px 13px 57px;
           }

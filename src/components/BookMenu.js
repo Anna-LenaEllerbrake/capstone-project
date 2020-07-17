@@ -2,49 +2,48 @@ import React from 'react'
 import Dropdown from './Dropdown'
 import BookList from './BookList'
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 import TableOfContent from './TableOfContent'
 
-export default function BookMenu({ apiUrl }) {
-  const [isActive, setIsActive] = useState(false)
-  const [books, setBooks] = useState([])
-  const [currentBook, setCurrentBook] = useState()
+export default function BookMenu({ currentBookTitle, onClick, apiUrl, books }) {
+  const [status, setStatus] = useState('INACTIVE')
 
   useEffect(() => {
-    axios(apiUrl)
-      .then((response) => response.data)
-      .then((responseJson) => {
-        setBooks(responseJson)
-      })
-      .catch((error) => console.log(error))
-  }, [])
+    setStatus(currentBookTitle ? 'SELECTED' : 'INACTIVE')
+  }, [currentBookTitle])
+
+  const currentBook = books.find((item) => item.topic === currentBookTitle)
 
   return (
     <div>
       <Dropdown
-        isActive={isActive}
-        onClick={changeIsActive}
+        status={status}
+        onClick={changeStatusOnClick}
         selectText={'Wähle eine Lektürehilfe'}
         selectedText={currentBook && currentBook.topic}
       />
-      {isActive ? (
-        <BookList books={books} onClick={handleClick} />
-      ) : currentBook ? (
-        <TableOfContent bookChapters={currentBook.children} />
+      {status === 'ACTIVE' ? (
+        <BookList books={books} onClick={changeStatusOnClick} />
+      ) : status === 'SELECTED' && currentBook ? (
+        <TableOfContent book={currentBook} />
       ) : (
         <></>
       )}
     </div>
   )
 
-  function handleClick(event) {
-    changeIsActive()
-    setCurrentBook(
-      books.find((item) => item.topic === event.target.textContent)
-    )
-  }
-
-  function changeIsActive() {
-    setIsActive(!isActive)
+  function changeStatusOnClick() {
+    if (status === 'INACTIVE') {
+      setStatus('ACTIVE')
+    } else if (
+      status === 'ACTIVE' &&
+      currentBookTitle &&
+      currentBookTitle !== ''
+    ) {
+      setStatus('SELECTED')
+    } else if (status === 'ACTIVE') {
+      setStatus('INACTIVE')
+    } else {
+      setStatus('ACTIVE')
+    }
   }
 }

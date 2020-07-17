@@ -1,10 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+import { getUrl } from '../util'
 
 export default function BookListItem({ book, onClick }) {
+  const urlTopic = getUrl(book.topic)
+
   return (
-    <StyledBookListItem data-testid="book-button" onClick={onClick}>
-      {book.topic}
+    <StyledBookListItem data-testid="book-button">
+      <Link to={`/${urlTopic}`} onClick={onClick}>
+        {book.topic}
+      </Link>
     </StyledBookListItem>
   )
 }
@@ -19,4 +25,10 @@ const StyledBookListItem = styled.li`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  background: var(--tertiaryBlue);
+
+  > a {
+    text-decoration: none;
+    color: var(--textGrey);
+  }
 `

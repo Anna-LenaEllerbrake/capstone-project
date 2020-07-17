@@ -26,7 +26,6 @@ export default function BookMenu({ currentBookTitle, onClick, apiUrl, books }) {
       ) : status === 'SELECTED' && currentBook ? (
         <TableOfContent book={currentBook} />
       ) : (
-        //
         <></>
       )}
     </div>

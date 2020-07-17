@@ -9,10 +9,8 @@ import { getTitleFromUrl } from '../util'
 
 export default function ContentScreen() {
   const props = useParams()
-  //const containerTopicUrl = props.chapterTopic
   const containerTopic = getTitleFromUrl(props.chapterTopic)
   const bookTitleUrl = props.bookTitle
-  //const bookTitle = getTitleForUrl(props.bookTitle)
   const [content, setContent] = useState({})
   const apiSource = `https://www.schullv.de/api/v2/containers/${props.containerId}/labels/LKlektuerenhilfen0/contents`
 

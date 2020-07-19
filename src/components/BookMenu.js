@@ -1,7 +1,6 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Dropdown from './Dropdown'
 import BookList from './BookList'
-import { useState, useEffect } from 'react'
 import TableOfContent from './TableOfContent'
 
 export default function BookMenu({ currentBookTitle, onClick, apiUrl, books }) {

@@ -1,5 +1,3 @@
-// src/components/Task.stories.js
-
 import React from 'react'
 import { action } from '@storybook/addon-actions'
 

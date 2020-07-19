@@ -1,9 +1,6 @@
-import React from 'react'
-import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import NavigateNextIcon from '@material-ui/icons/NavigateNext'
-import { useState } from 'react'
 
 export default function ChapterItemWithSubchapters({ item, renderItem }) {
   const [isOpen, setIsOpen] = useState(false)

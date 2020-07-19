@@ -1,10 +1,8 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
-import { useParams } from 'react-router-dom'
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { getTitleFromUrl } from '../util'
 
 export default function ContentScreen() {

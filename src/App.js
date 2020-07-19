@@ -1,10 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { Switch, Route } from 'react-router-dom'
 import axios from 'axios'
 import StartScreen from './Pages/StartScreen'
 import ContentScreen from './Pages/ContentScreen'
-import { useState, useEffect } from 'react'
 import { productionSource, developmentSource } from './constants'
 
 function App() {

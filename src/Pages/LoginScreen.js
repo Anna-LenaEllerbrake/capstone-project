@@ -8,13 +8,16 @@ export default function LoginScreen() {
   const [response, setResponse] = useState()
   const [errorText, setErrorText] = useState('')
   const [loggedIn, setLoggedIn] = useState(false)
+  const [successText, setSuccessText] = useState('')
 
   useEffect(() => {
-    if (response && response.message) {
-      setErrorText('Die Anagaben sind leider nicht korrekt.')
-    } else {
-      console.log('logged in!! :)')
-      setLoggedIn(true)
+    if (response) {
+      if (response.message) {
+        setErrorText('Die Anagaben sind leider nicht korrekt.')
+      } else {
+        setSuccessText('Du bist jetzt eingeloggt.')
+        setLoggedIn(true)
+      }
     }
   }, [response])
 
@@ -70,6 +73,7 @@ export default function LoginScreen() {
         <StyledButton type="submit" name="Login">
           Login
         </StyledButton>
+        <p>{successText}</p>
       </StyledForm>
     </Grid>
   )

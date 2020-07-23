@@ -14,7 +14,7 @@ export default function StartScreen({ books, apiUrl }) {
     <Grid>
       <header>
         <img
-          src="/img/schullv_logo.png"
+          src="/img/schullv_logo_with_mission.png"
           alt="Logo SchulLV - smarter learning"
         />
       </header>

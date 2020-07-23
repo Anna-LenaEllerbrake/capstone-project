@@ -84,7 +84,7 @@ export const StyledTableOfContent = styled.ul`
   > li {
     > div,
     a {
-      background-color: var(--secondaryBlue);
+      background-color: var(--blue2);
       padding: 13px;
     }
 
@@ -92,14 +92,14 @@ export const StyledTableOfContent = styled.ul`
       > li {
         > div,
         a {
-          background-color: var(--tertiaryBlue);
+          background-color: var(--blue3);
           padding: 13px 13px 13px 35px;
         }
 
         > ul {
           > li > div,
           a {
-            background-color: var(--quaternaryBlue);
+            background-color: var(--blue4);
             padding: 13px 13px 13px 57px;
           }
         }

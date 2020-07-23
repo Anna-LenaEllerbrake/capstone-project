@@ -25,7 +25,7 @@ const StyledBookListItem = styled.li`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  background: var(--tertiaryBlue);
+  background: var(--blue3);
 
   > a {
     text-decoration: none;

@@ -3,11 +3,14 @@ import Roboto from '../fonts/Roboto-Regular.ttf'
 
 export default createGlobalStyle`
 :root {
-  --primaryBlue: #2D6EC8; 
-  --secondaryBlue: #82a9de;
-  --tertiaryBlue: #b1c9ea;
-  --quaternaryBlue: #e1eaf7;
+  --blue1: #2D6EC8; 
+  --blue2: #82a9de;
+  --blue3: #b1c9ea;
+  --blue4: #e1eaf7;
   --textGrey: #434343;
+  --grey2: #8B8B8B;
+  --grey3: #B7B7B7;
+  --grey4: #E2E2E2;
 }
 
 @font-face {

@@ -45,7 +45,7 @@ const Grid = styled.div`
   > header {
     display: flex;
     flex-direction: row;
-    color: var(--primaryBlue);
+
     width: 100vw;
     text-align: center;
 
@@ -58,7 +58,7 @@ const Grid = styled.div`
       justify-self: start;
 
       text-decoration: none;
-      color: var(--primaryBlue);
+      color: var(--blue1);
       transform: scale(1.4);
     }
 

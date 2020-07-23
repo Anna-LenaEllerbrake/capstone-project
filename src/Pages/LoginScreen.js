@@ -1,12 +1,48 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
+import md5 from 'md5'
 
 export default function LoginScreen() {
   const { register, handleSubmit, watch, errors } = useForm()
+  const [response, setResponse] = useState()
+  const [errorText, setErrorText] = useState('')
+  const [loggedIn, setLoggedIn] = useState(false)
 
-  function onSubmit(data) {
-    console.log(md5(data.password))
+  useEffect(() => {
+    if (response && response.message) {
+      setErrorText('Die Anagaben sind leider nicht korrekt.')
+    } else {
+      console.log('logged in!! :)')
+      setLoggedIn(true)
+    }
+  }, [response])
+
+  function getPasswordInMd5(password) {
+    if (password) {
+      return md5(password)
+    }
+  }
+
+  function logIn(data) {
+    if (data.email && data.password) {
+      fetch(
+        `https://www.schullv.de/api/v2/users?email=${
+          data.email
+        }&password=${getPasswordInMd5(data.password)}`
+      )
+        .then((response) => response.json())
+        .then((responseJson) => {
+          setResponse(responseJson)
+        })
+        .catch((error) => console.log(error))
+    }
+    console.log(
+      'E-Mail: ',
+      data.email,
+      'Passwort(verschlüsselt): ',
+      md5(data.password)
+    )
   }
 
   return (
@@ -17,7 +53,7 @@ export default function LoginScreen() {
           alt="Logo SchulLV - smarter learning"
         />
       </header>
-      <StyledForm onSubmit={handleSubmit(onSubmit)}>
+      <StyledForm onSubmit={handleSubmit(logIn)}>
         <StyledTextInput
           name="email"
           placeholder="E-Mail"
@@ -30,7 +66,7 @@ export default function LoginScreen() {
           ref={register({ required: true })}
           placeholder="Passwort"
         />
-
+        <StyledError>{errorText}</StyledError>
         <StyledButton type="submit" name="Login">
           Login
         </StyledButton>
@@ -102,4 +138,12 @@ const StyledButton = styled.button`
   color: white;
   font-size: 1rem;
   outline: none;
+`
+
+const StyledError = styled.span`
+  font-size: 0.7rem;
+  color: var(--error);
+  width: 100%;
+  margin-top: 5px;
+  margin-left: 5px;
 `

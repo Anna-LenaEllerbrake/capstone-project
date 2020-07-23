@@ -11,6 +11,7 @@ export default createGlobalStyle`
   --grey2: #8B8B8B;
   --grey3: #B7B7B7;
   --grey4: #E2E2E2;
+  --error: #de4644;
 }
 
 @font-face {

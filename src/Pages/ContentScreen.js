@@ -5,7 +5,7 @@ import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore'
 import { Link, useParams } from 'react-router-dom'
 import { getTitleFromUrl } from '../util'
 
-export default function ContentScreen() {
+export default function ContentScreen({ loggedIn }) {
   const props = useParams()
   const containerTopic = getTitleFromUrl(props.chapterTopic)
   const bookTitleUrl = props.bookTitle
@@ -20,18 +20,23 @@ export default function ContentScreen() {
       })
       .catch((error) => console.log(error))
   }, [])
+  console.log('loggedIn: ', loggedIn)
 
-  return (
-    <Grid>
-      <header>
-        <Link to={`/${bookTitleUrl}`}>
-          <NavigateBeforeIcon size={48} />
-        </Link>
-        <h1>{containerTopic}</h1>
-      </header>
-      <section dangerouslySetInnerHTML={{ __html: content.html }} />
-    </Grid>
-  )
+  if (loggedIn) {
+    return (
+      <Grid>
+        <header>
+          <Link to={`/${bookTitleUrl}`}>
+            <NavigateBeforeIcon size={48} />
+          </Link>
+          <h1>{containerTopic}</h1>
+        </header>
+        <section dangerouslySetInnerHTML={{ __html: content.html }} />
+      </Grid>
+    )
+  } else {
+    return <p>Du bist leider nicht eingeloggt.</p>
+  }
 }
 
 const Grid = styled.div`

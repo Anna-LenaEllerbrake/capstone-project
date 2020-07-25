@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 import md5 from 'md5'
 
-export default function LoginScreen() {
+export default function LoginScreen({ login }) {
   const { register, handleSubmit, watch, errors } = useForm()
   const [response, setResponse] = useState()
   const [errorText, setErrorText] = useState('')
-  const [loggedIn, setLoggedIn] = useState(false)
   const [successText, setSuccessText] = useState('')
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export default function LoginScreen() {
         setErrorText('Die Anagaben sind leider nicht korrekt.')
       } else {
         setSuccessText('Du bist jetzt eingeloggt.')
-        setLoggedIn(true)
+        login(true)
       }
     }
   }, [response])
@@ -51,10 +51,12 @@ export default function LoginScreen() {
   return (
     <Grid>
       <header>
-        <img
-          src="/img/schullv_logo.png"
-          alt="Logo SchulLV - smarter learning"
-        />
+        <Link to="/">
+          <img
+            src="/img/schullv_logo.png"
+            alt="Logo SchulLV - smarter learning"
+          />
+        </Link>
       </header>
       <StyledForm onSubmit={handleSubmit(logIn)}>
         <StyledTextInput

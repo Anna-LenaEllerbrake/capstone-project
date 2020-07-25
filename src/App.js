@@ -9,6 +9,7 @@ import { productionSource, developmentSource } from './constants'
 
 function App() {
   const [books, setBooks] = useState([])
+  const [loggedIn, setLoggedIn] = useState(false)
   const apiUrl = productionSource
 
   useEffect(() => {
@@ -27,12 +28,11 @@ function App() {
       </Route>
 
       <Route path="/login">
-        <LoginScreen />
+        <LoginScreen login={setLoggedIn} />
       </Route>
-      <Route
-        path="/:bookTitle/:chapterTopic/:containerId"
-        component={ContentScreen}
-      />
+      <Route path="/:bookTitle/:chapterTopic/:containerId">
+        <ContentScreen loggedIn={loggedIn} />
+      </Route>
       <Route path="/:bookTitleForUrl">
         <StartScreen books={books} />
       </Route>

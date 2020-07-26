@@ -1,38 +1,43 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import styled from 'styled-components'
+import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore'
-import { Link, useParams } from 'react-router-dom'
-import { getTitleFromUrl } from '../util'
 import { StyledButton, SectionWithButton } from '../components/Button'
+import Navigation from '../components/Navigation'
 
-export default function ContentScreen({ loggedIn }) {
-  const props = useParams()
-  const containerTopic = getTitleFromUrl(props.chapterTopic)
-  const bookTitleUrl = props.bookTitle
-  const [content, setContent] = useState({})
-  const apiSource = `https://www.schullv.de/api/v2/containers/${props.containerId}/labels/LKlektuerenhilfen0/contents`
+export default function ProfileScreen({
+  loggedIn,
+  setLoggedIn,
+  userData,
+  setUserData,
+}) {
+  const { register, handleSubmit, watch, errors } = useForm()
+  const [response, setResponse] = useState()
+  const [errorText, setErrorText] = useState('')
+  const [successText, setSuccessText] = useState('')
 
-  useEffect(() => {
-    axios(apiSource)
-      .then((response) => response.data)
-      .then((responseJson) => {
-        setContent(responseJson)
-      })
-      .catch((error) => console.log(error))
-  }, [])
-  console.log('loggedIn: ', loggedIn)
+  function logout() {
+    setLoggedIn(false)
+    setUserData('')
+  }
 
   return (
     <Grid>
       <header>
-        <Link to={`/${bookTitleUrl}`}>
+        <Link to="/">
           <NavigateBeforeIcon size={48} />
         </Link>
-        <h1>{containerTopic}</h1>
+        <h1>Profil</h1>
       </header>
       {loggedIn ? (
-        <section dangerouslySetInnerHTML={{ __html: content.html }} />
+        <SectionWithButton>
+          <p>
+            <h4>Du bist eingeloggt als:</h4>
+            {userData}
+          </p>
+          <StyledButton onClick={logout}>Logout</StyledButton>
+        </SectionWithButton>
       ) : (
         <SectionWithButton>
           Du bist noch nicht eingeloggt.
@@ -41,6 +46,7 @@ export default function ContentScreen({ loggedIn }) {
           </Link>
         </SectionWithButton>
       )}
+      <Navigation activeScreen="Profil" loggedIn={loggedIn} />
     </Grid>
   )
 }
@@ -49,7 +55,7 @@ const Grid = styled.div`
   width: 100vw;
   height: 100vh;
   display: grid;
-  grid-template-rows: 80px auto;
+  grid-template-rows: 80px auto 50px;
   justify-content: space-between;
   align-items: center;
 
@@ -82,10 +88,5 @@ const Grid = styled.div`
       text-overflow: ellipsis;
       white-space: nowrap;
     }
-  }
-
-  > section {
-    padding: 0 10px 10px;
-    align-self: flex-start;
   }
 `

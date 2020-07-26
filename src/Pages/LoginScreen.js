@@ -3,8 +3,10 @@ import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import md5 from 'md5'
+import { StyledButton } from '../components/Button'
+import Navigation from '../components/Navigation'
 
-export default function LoginScreen({ login }) {
+export default function LoginScreen({ setLoggedIn, setUserData, loggedIn }) {
   const { register, handleSubmit, watch, errors } = useForm()
   const [response, setResponse] = useState()
   const [errorText, setErrorText] = useState('')
@@ -12,11 +14,13 @@ export default function LoginScreen({ login }) {
 
   useEffect(() => {
     if (response) {
+      console.log(response.email)
       if (response.message) {
         setErrorText('Die Anagaben sind leider nicht korrekt.')
       } else {
         setSuccessText('Du bist jetzt eingeloggt.')
-        login(true)
+        setUserData(response.email)
+        setLoggedIn(true)
       }
     }
   }, [response])
@@ -27,7 +31,7 @@ export default function LoginScreen({ login }) {
     }
   }
 
-  function logIn(data) {
+  function login(data) {
     if (data.email && data.password) {
       fetch(
         `https://www.schullv.de/api/v2/users?email=${
@@ -58,7 +62,7 @@ export default function LoginScreen({ login }) {
           />
         </Link>
       </header>
-      <StyledForm onSubmit={handleSubmit(logIn)}>
+      <StyledForm onSubmit={handleSubmit(login)}>
         <StyledTextInput
           name="email"
           placeholder="E-Mail"
@@ -77,6 +81,7 @@ export default function LoginScreen({ login }) {
         </StyledButton>
         <p>{successText}</p>
       </StyledForm>
+      <Navigation activeScreen="Login" loggedIn={loggedIn}></Navigation>
     </Grid>
   )
 }
@@ -85,7 +90,7 @@ const Grid = styled.div`
   width: 100vw;
   height: 100vh;
   display: grid;
-  grid-template-rows: 120px auto;
+  grid-template-rows: 120px auto 50px;
   justify-content: center;
   align-items: center;
 
@@ -96,8 +101,11 @@ const Grid = styled.div`
     align-items: center;
     width: 100vw;
 
-    > img {
+    > a {
       height: 40px;
+      > img {
+        height: 40px;
+      }
     }
   }
 
@@ -131,19 +139,6 @@ const StyledTextInput = styled.input`
   ::placeholder {
     color: var(--grey3);
   }
-`
-
-const StyledButton = styled.button`
-  border: none;
-  background-color: var(--blue2);
-  justify-self: center;
-  width: 80%;
-  height: 48px;
-  margin-top: 50px;
-  border-radius: 24px;
-  color: white;
-  font-size: 1rem;
-  outline: none;
 `
 
 const StyledError = styled.span`

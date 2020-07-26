@@ -14,11 +14,11 @@ export default function LoginScreen({ setLoggedIn, setUserData, loggedIn }) {
 
   useEffect(() => {
     if (response) {
-      console.log(response.email)
       if (response.message) {
         setErrorText('Die Anagaben sind leider nicht korrekt.')
       } else {
         setSuccessText('Du bist jetzt eingeloggt.')
+        setErrorText('')
         setUserData(response.email)
         setLoggedIn(true)
       }
@@ -44,12 +44,6 @@ export default function LoginScreen({ setLoggedIn, setUserData, loggedIn }) {
         })
         .catch((error) => console.log(error))
     }
-    console.log(
-      'E-Mail: ',
-      data.email,
-      'Passwort(verschlüsselt): ',
-      md5(data.password)
-    )
   }
 
   return (

@@ -21,11 +21,6 @@ export const SectionWithButton = styled.section`
   align-self: flex-start;
   align-items: center;
 
-  > p {
-    width: 100%;
-    padding: 0 20px;
-  }
-
   > a {
     width: 100%;
     text-align: center;

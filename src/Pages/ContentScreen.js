@@ -21,7 +21,6 @@ export default function ContentScreen({ loggedIn }) {
       })
       .catch((error) => console.log(error))
   }, [])
-  console.log('loggedIn: ', loggedIn)
 
   return (
     <Grid>
@@ -35,7 +34,7 @@ export default function ContentScreen({ loggedIn }) {
         <section dangerouslySetInnerHTML={{ __html: content.html }} />
       ) : (
         <SectionWithButton>
-          Du bist noch nicht eingeloggt.
+          Die Texte sind nur für dich verfügbar, wenn du eingeloggt bist.
           <Link to="/login">
             <StyledButton>Zum Login</StyledButton>
           </Link>

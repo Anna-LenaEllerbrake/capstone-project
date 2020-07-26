@@ -25,17 +25,12 @@ export default function ProfileScreen({
   return (
     <Grid>
       <header>
-        <Link to="/">
-          <NavigateBeforeIcon size={48} />
-        </Link>
         <h1>Profil</h1>
       </header>
       {loggedIn ? (
         <SectionWithButton>
-          <p>
-            <h4>Du bist eingeloggt als:</h4>
-            {userData}
-          </p>
+          <h4>Du bist eingeloggt als:</h4>
+          <span>{userData}</span>
           <StyledButton onClick={logout}>Logout</StyledButton>
         </SectionWithButton>
       ) : (

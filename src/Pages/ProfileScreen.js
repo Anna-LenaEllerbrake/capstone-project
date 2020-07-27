@@ -3,7 +3,11 @@ import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore'
-import { StyledButton, SectionWithButton } from '../components/Button'
+import {
+  StyledButton,
+  SectionWithButton,
+  ButtonLink,
+} from '../components/Button'
 import Navigation from '../components/Navigation'
 
 export default function ProfileScreen({
@@ -36,9 +40,9 @@ export default function ProfileScreen({
       ) : (
         <SectionWithButton>
           Du bist noch nicht eingeloggt.
-          <Link to="/login">
+          <ButtonLink to="/login">
             <StyledButton>Zum Login</StyledButton>
-          </Link>
+          </ButtonLink>
         </SectionWithButton>
       )}
       <Navigation activeScreen="Profil" loggedIn={loggedIn} />
@@ -52,7 +56,6 @@ const Grid = styled.div`
   display: grid;
   grid-template-rows: 80px auto 50px;
   justify-content: space-between;
-  align-items: center;
 
   > header {
     display: flex;
@@ -60,25 +63,13 @@ const Grid = styled.div`
 
     width: 100vw;
     text-align: center;
-
     justify-content: center;
 
-    > a {
-      position: absolute;
-      left: 25px;
-      top: 29px;
-      justify-self: start;
-
-      text-decoration: none;
-      color: var(--blue1);
-      transform: scale(1.4);
-    }
-
     > h1 {
-      margin: 0 55px;
+      margin: 0 auto;
       font-size: 1.5rem;
       justify-content: center;
-      align-self: start;
+      align-self: center;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;

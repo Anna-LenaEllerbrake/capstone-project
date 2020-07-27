@@ -7,7 +7,7 @@ import { StyledButton } from '../components/Button'
 import Navigation from '../components/Navigation'
 
 export default function LoginScreen({ setLoggedIn, setUserData, loggedIn }) {
-  const { register, handleSubmit, watch, errors } = useForm()
+  const { register, handleSubmit } = useForm()
   const [response, setResponse] = useState()
   const [errorText, setErrorText] = useState('')
   const [successText, setSuccessText] = useState('')
@@ -24,27 +24,6 @@ export default function LoginScreen({ setLoggedIn, setUserData, loggedIn }) {
       }
     }
   }, [response])
-
-  function getPasswordInMd5(password) {
-    if (password) {
-      return md5(password)
-    }
-  }
-
-  function login(data) {
-    if (data.email && data.password) {
-      fetch(
-        `https://www.schullv.de/api/v2/users?email=${
-          data.email
-        }&password=${getPasswordInMd5(data.password)}`
-      )
-        .then((response) => response.json())
-        .then((responseJson) => {
-          setResponse(responseJson)
-        })
-        .catch((error) => console.log(error))
-    }
-  }
 
   return (
     <Grid>
@@ -78,6 +57,26 @@ export default function LoginScreen({ setLoggedIn, setUserData, loggedIn }) {
       <Navigation activeScreen="Login" loggedIn={loggedIn}></Navigation>
     </Grid>
   )
+  function login(data) {
+    if (data.email && data.password) {
+      fetch(
+        `https://www.schullv.de/api/v2/users?email=${
+          data.email
+        }&password=${getPasswordInMd5(data.password)}`
+      )
+        .then((response) => response.json())
+        .then((responseJson) => {
+          setResponse(responseJson)
+        })
+        .catch((error) => console.log(error))
+    }
+  }
+}
+
+function getPasswordInMd5(password) {
+  if (password) {
+    return md5(password)
+  }
 }
 
 const Grid = styled.div`

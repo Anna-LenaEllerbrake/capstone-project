@@ -4,11 +4,7 @@ import styled from 'styled-components'
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore'
 import { Link, useParams } from 'react-router-dom'
 import { getTitleFromUrl } from '../util'
-import {
-  StyledButton,
-  SectionWithButton,
-  ButtonLink,
-} from '../components/Button'
+import { StyledButton, ButtonLink } from '../components/Button'
 
 export default function ContentScreen({ loggedIn }) {
   const props = useParams()

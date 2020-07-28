@@ -104,8 +104,8 @@ const Layer = styled.div`
   top: 0;
   background-image: linear-gradient(
     rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.8),
     rgba(255, 255, 255, 1)
   );
   width: 100vw;

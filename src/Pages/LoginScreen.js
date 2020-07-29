@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import md5 from 'md5'
-import { StyledButton } from '../components/Button'
+import { StyledButton, ButtonLink } from '../components/Button'
 import Navigation from '../components/Navigation'
 
 export default function LoginScreen({ setLoggedIn, setUserData, loggedIn }) {

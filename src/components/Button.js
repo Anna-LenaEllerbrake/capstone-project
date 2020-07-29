@@ -1,10 +1,9 @@
-import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export const StyledButton = styled.button`
   border: none;
   background-color: var(--blue2);
-  justify-self: center;
   width: 80%;
   height: 48px;
   margin-top: 40px;
@@ -14,15 +13,15 @@ export const StyledButton = styled.button`
   outline: none;
 `
 
+export const ButtonLink = styled(Link)`
+  width: 100%;
+  text-align: center;
+`
+
 export const SectionWithButton = styled.section`
   display: flex;
   flex-direction: column;
   padding: 0 10px 10px;
-  align-self: flex-start;
   align-items: center;
-
-  > a {
-    width: 100%;
-    text-align: center;
-  }
+  width: 100%;
 `

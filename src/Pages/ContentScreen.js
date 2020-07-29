@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore'
 import { Link, useParams } from 'react-router-dom'
 import { getTitleFromUrl } from '../util'
-import { StyledButton, SectionWithButton } from '../components/Button'
+import { StyledButton, ButtonLink } from '../components/Button'
 
 export default function ContentScreen({ loggedIn }) {
   const props = useParams()
@@ -33,12 +33,16 @@ export default function ContentScreen({ loggedIn }) {
       {loggedIn ? (
         <section dangerouslySetInnerHTML={{ __html: content.html }} />
       ) : (
-        <SectionWithButton>
-          Die Texte sind nur für dich verfügbar, wenn du eingeloggt bist.
-          <Link to="/login">
-            <StyledButton>Zum Login</StyledButton>
-          </Link>
-        </SectionWithButton>
+        <>
+          <LayerSection dangerouslySetInnerHTML={{ __html: content.html }} />
+
+          <Layer>
+            <div></div>
+            <ButtonLink to="/login">
+              <StyledButton>Zum Login</StyledButton>
+            </ButtonLink>
+          </Layer>
+        </>
       )}
     </Grid>
   )
@@ -87,4 +91,24 @@ const Grid = styled.div`
     padding: 0 10px 10px;
     align-self: flex-start;
   }
+`
+const Layer = styled.div`
+  display: grid;
+  grid-template-rows: auto 120px;
+
+  position: fixed;
+  top: 0;
+  background-image: linear-gradient(
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 1)
+  );
+  width: 100vw;
+  height: 100vh;
+`
+
+const LayerSection = styled.section`
+  height: 80vh;
+  overflow: hidden;
 `
